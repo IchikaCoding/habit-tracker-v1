@@ -1,4 +1,4 @@
-// pages.tsx
+// app/login/pages.tsx
 
 "use client";
 
@@ -19,7 +19,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex item-center justify-center">
+    <div className="min-h-screen flex items-center justify-center">
       <button
         onClick={handleLogin}
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
