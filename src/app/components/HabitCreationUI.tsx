@@ -24,6 +24,7 @@ import SaveIcon from "@mui/icon-material/Save";
 import CheckIcon from "@mui/icon-material/Check";
 import CloseIcon from "@mui/icon-material/Close";
 import AccessTimeIcon from "@mui/icon-material/AccessTime"; // For time picker icon
+import { useSearchParams } from "next/navigation";
 
 // カラーパレットの定義（４＊５グリッド）
 const colors = [
@@ -60,4 +61,12 @@ function HabitCreationUI() {
   const [frequencyType, setFrequencyType] = useState("daily"); // daily, weekly, monthly, custom
   const [customFrequencyDays, setCustomFrequencyDays] = useState(1);
   const [customFrequencyTimes, setCustomFrequencyTimes] = useState(1);
+  const [reminderEnabled, setReminderEnable] = useState(false);
+  const [reminderHour, setReminderHour] = useState(12);
+  const [reminderMinute, setReminderMinute] = useState(12);
+  const [reminderPeriod, setReminderPeriod] = useState("AM"); // AM or PM
+  const [openTimerPicker, setOpenTimePicker] = useState(false);
+  const [notes, setNotes] = useState("");
 }
+
+// リマインダー時刻のフォーマット
