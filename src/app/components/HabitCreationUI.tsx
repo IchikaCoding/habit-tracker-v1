@@ -1,4 +1,6 @@
-import React, { useState, useEffect, use } from "react";
+// D:\Dev\habit-tracker\habit-tracker-v1\src\app\components\HabitCreationUI.tsx
+
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -25,6 +27,7 @@ import CheckIcon from "@mui/icon-material/Check";
 import CloseIcon from "@mui/icon-material/Close";
 import AccessTimeIcon from "@mui/icon-material/AccessTime"; // For time picker icon
 import { useSearchParams } from "next/navigation";
+import { defaultOverrides } from "next/dist/server/require-hook";
 
 // カラーパレットの定義（４＊５グリッド）
 const colors = [
@@ -67,6 +70,50 @@ function HabitCreationUI() {
   const [reminderPeriod, setReminderPeriod] = useState("AM"); // AM or PM
   const [openTimerPicker, setOpenTimePicker] = useState(false);
   const [notes, setNotes] = useState("");
+
+  // リマインダー時刻のフォーマット
+  const formatReminderTime = () => {
+    const hour =
+      reminderPeriod === "PM" && reminderHour !== 12
+        ? reminderHour + 12
+        : reminderHour;
+
+    const displayHour = reminderHour;
+
+    const displayMinute = reminderMinute.toString().padStart(2, "0");
+
+    return `${displayHour}:${displayMinute} ${reminderPeriod}`;
+  };
+
+  // 習慣作成ロジック
+  const handleCreateHabit = () => {
+    console.log("習慣データ:", {
+      habitName,
+      habitQuestion,
+      selectedColor,
+      frequency: {
+        type: frequencyType,
+        days: frequencyType === "custom" ? customFrequencyDays : undefined,
+        times: frequencyType === "custom" ? customFrequencyTimes : undefined,
+      },
+      reminder: reminderEnabled
+        ? {
+            hour: reminderHour,
+            minute: reminderMinute,
+            period: reminderPeriod,
+            displayTime: formatReminderTime(),
+          }
+        : null,
+      notes,
+    });
+  };
+
+  return (
+    <div style={{ padding: "2rem", border: "1px solid gray" }}>
+      <h2>HabitCreationUI 表示確認！</h2>
+      <p>ここにUIを追加していきます。</p>
+    </div>
+  );
 }
 
-// リマインダー時刻のフォーマット
+export default HabitCreationUI;

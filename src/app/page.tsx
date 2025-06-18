@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db, auth } from "../firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
+import HabitCreationUI from "./components/HabitCreationUI";
 
 export default function Home() {
   const [title, setTitle] = useState("");
@@ -39,31 +40,5 @@ export default function Home() {
     }
   };
 
-  return (
-    <div className="min-h-screen p-6">
-      <h1 className="text-2xl font-bold mb-4">習慣を追加</h1>
-      <div className="space-y-4">
-        <input
-          type="text"
-          placeholder="習慣のタイトル（例：ストレッチ）"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="border rounded p-2 w-full"
-        />
-        <input
-          type="text"
-          placeholder="習慣の質問（例：今日はストレッチをしましたか？）"
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-          className="border rounded p-2 w-full"
-        />
-        <button
-          onClick={handleAddHabit}
-          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-        >
-          習慣を登録
-        </button>
-      </div>
-    </div>
-  );
+  return <HabitCreationUI />;
 }
