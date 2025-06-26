@@ -208,7 +208,9 @@ function HabitCreationUI() {
             label="名前"
             placeholder="例: エクササイズ"
             value={habitName}
-            onChange={(e) => setHabitName(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setHabitName(e.target.value)
+            }
             fullWidth
             margin="normal"
             variant="outlined"
