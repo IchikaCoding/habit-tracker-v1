@@ -1,21 +1,24 @@
+/*D:\Dev\habit-tracker\habit-tracker-v1\src\app\globals.css  */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ffffff; /* 背景色 */
+  --foreground: #171717; /* 文字色 */
 }
 
-@media (prefers-color-scheme: dark) {
+body {
+  color: var(--foreground); /* 文字色 */
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ダークモードにしているときに差し替える */
+/* @media (prefers-color-scheme: dark) {
+  
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
+} */

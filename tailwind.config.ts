@@ -16,3 +16,12 @@ export default {
   },
   plugins: [],
 } satisfies Config;
+
+// ダークモードに対応するため
+// module.exports = {
+//   darkMode: "media",
+//   theme: {
+//     extend: {},
+//   },
+//   plugins: [],
+// };
