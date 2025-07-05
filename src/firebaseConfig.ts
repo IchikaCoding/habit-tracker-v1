@@ -1,18 +1,16 @@
-// firebaseConfig.ts
-
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCQ_G4sw2SXUINwLDoFLFMDaczAKUci7W8",
-  authDomain: "habit-tracker-v1-d0abd.firebaseapp.com",
-  projectId: "habit-tracker-v1-d0abd",
-  storageBucket: "habit-tracker-v1-d0abd.firebasestorage.appspot.com",
-  messagingSenderId: "101077910727",
-  appId: "1:101077910727:web:7e703cb0bc84534c852ae2",
-  measurementId: "G-PGSXFF4RJS",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY!,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN!,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID!,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET!,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID!,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID!,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID!,
 };
 
 const app = initializeApp(firebaseConfig);
