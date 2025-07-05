@@ -1,0 +1,17 @@
+{
+    "name": "${localWorkspaceFolderBasename}",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "containerUser": "vscode", 
+    "remoteUser": "vscode",
+    "updateRemoteUserUID": true,
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "biomejs.biome",
+                "streetsidesoftware.code-spell-checker"
+            ]
+        }
+    }
+}

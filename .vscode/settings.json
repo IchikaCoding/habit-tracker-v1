@@ -1,0 +1,30 @@
+{
+    "html.autoClosingTags": true,
+    "[html]": {
+        "editor.detectIndentation": false,
+        "editor.linkedEditing": true,
+        "editor.tabSize": 2
+    },
+    "javascript.autoClosingTags": true,
+    "javascript.suggest.autoImports": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "typescript.autoClosingTags": true,
+    "typescript.suggest.autoImports": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "[javascript][javascriptreact][typescript][typescriptreact]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports.biome": "always",
+            "source.fixAll.biome": "always"
+        },
+        "editor.defaultFormatter": "biomejs.biome",
+        "editor.detectIndentation": false,
+        "editor.formatOnSave": true,
+        "editor.linkedEditing": true,
+        "editor.tabSize": 2,
+        "files.insertFinalNewline": true
+    },
+    "biome.lsp": {
+        "bin": "/workspace/frontend/node_modules/.bin/biome",
+        "configurationPath": "/workspace/frontend/biome.json",
+    },
+}

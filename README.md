@@ -68,13 +68,13 @@ cd habit-tracker-v1
 2. 依存パッケージのインストール
 
 ```bash
-npm install
+bun install
 ```
 
 3. 開発サーバーの起動
 
 ```bash
-npm run dev
+bun run dev
 ```
 
 4. ブラウザで [http://localhost:3000](http://localhost:3000) を開く
