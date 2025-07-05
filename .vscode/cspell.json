@@ -1,0 +1,11 @@
+{
+    "useGitignore": true,
+    "ignorePaths": [
+        "**/.devcontainer/**",
+        "**/.git/objects/**",
+        "**/.gitignore",
+        "**/.dockerignore",
+        "**/.vscode/**"
+    ],
+    "words": []
+}
