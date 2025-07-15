@@ -1,17 +1,19 @@
 // D:\Dev\habit-tracker\habit-tracker-v1\src\components\Habit\HabitCreationUI_Tailwind.tsx
 "use client";
+import { person } from "@components/ui/cake";
+import FormBlk from "@components/ui/FormBlk";
+import FrequencyField, {
+  type FrequencyValue,
+} from "@components/ui/FrequencyField";
+import { CheckIcon, ClockIcon, PlusIcon, SaveIcon } from "@components/ui/icons";
+import Modal from "@components/ui/Modal";
+import { auth, db } from "@firebase/firebaseConfig";
+import { addDoc, collection, Timestamp } from "@firebase/firestore";
 import { useState } from "react";
-import Modal from "@/components/ui/Modal";
-import FormBlk from "@/components/ui/FormBlk";
-import FrequencyField, { FrequencyValue } from "@/components/ui/FrequencyField";
-import {
-  PlusIcon,
-  SaveIcon,
-  CheckIcon,
-  ClockIcon,
-} from "@/components/ui/icons";
-import { db, auth } from "@/firebaseConfig";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
+
+/* ---------- cake.tsx ---------- */
+console.log("お名前：", person.name);
+console.log("お言葉：", person.greet);
 
 /* ---------- カラーパレット ---------- */
 const colors = [
@@ -113,6 +115,7 @@ export default function HabitCreationUI() {
       <header className="flex items-center justify-between px-4 py-3 bg-white shadow">
         <h2 className="text-lg font-bold text-gray-800">習慣</h2>
         <button
+          type="button"
           onClick={() => setOpenTypeDlg(true)}
           className="p-2 text-blue-600 rounded-full hover:bg-blue-100"
         >
@@ -129,6 +132,7 @@ export default function HabitCreationUI() {
             </h3>
             <div className="space-y-3">
               <button
+                type="button"
                 className="w-full py-3 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600"
                 onClick={() => {
                   setOpenCreateDlg(true);
@@ -137,10 +141,14 @@ export default function HabitCreationUI() {
               >
                 はい / いいえ
               </button>
-              <button className="w-full py-3 border-2 border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50">
+              <button
+                type="button"
+                className="w-full py-3 border-2 border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50"
+              >
                 計測可能
               </button>
               <button
+                type="button"
                 onClick={() => setOpenTypeDlg(false)}
                 className="w-full text-sm text-gray-500 mt-4"
               >
@@ -159,6 +167,7 @@ export default function HabitCreationUI() {
             <div className="flex items-center justify-between bg-blue-500 text-white px-4 py-3 rounded-t-lg">
               <h3 className="font-bold">習慣を作成</h3>
               <button
+                type="button"
                 onClick={handleCreate}
                 className="flex items-center gap-1 bg-white text-blue-500 px-3 py-1 rounded shadow hover:bg-gray-100"
               >
@@ -181,6 +190,7 @@ export default function HabitCreationUI() {
               {/* 色 */}
               <FormBlk label="色">
                 <button
+                  type="button"
                   onClick={() => setOpenColorDlg(true)}
                   style={{ backgroundColor: selectedColor }}
                   className="w-12 h-12 rounded-full border-2"
@@ -194,6 +204,7 @@ export default function HabitCreationUI() {
                       <div className="grid grid-cols-5 gap-2">
                         {colors.map((c) => (
                           <button
+                            type="button"
                             key={c}
                             style={{ backgroundColor: c }}
                             className="w-9 h-9 rounded-full flex items-center justify-center border"
@@ -242,6 +253,7 @@ export default function HabitCreationUI() {
                 {reminderEnabled && (
                   <>
                     <button
+                      type="button"
                       onClick={() => setOpenTimeDlg(true)}
                       className="mt-3 flex items-center gap-1 px-3 py-1 border text-blue-600 rounded hover:bg-blue-50"
                     >
@@ -250,19 +262,28 @@ export default function HabitCreationUI() {
 
                     {openTimeDlg && (
                       <Modal onClose={() => setOpenTimeDlg(false)}>
+                        {" "}
+                        {/* 何か省略した書き方だった気がする */}
                         <div className="bg-white w-96 p-6 rounded-lg">
                           <h4 className="text-center font-bold mb-4">
                             時刻を選択
                           </h4>
+                          {/* 時間選択 */}
                           <div className="flex justify-center gap-3 mb-6">
                             <select
                               className="border rounded p-1"
                               value={reminderHour}
                               onChange={(e) => setReminderHour(+e.target.value)}
                             >
-                              {[...Array(12)].map((_, i) => (
-                                <option key={i + 1}>{i + 1}</option>
-                              ))}
+                              {/* hour は 1〜12 の「値」そのもの */}
+                              {/* [1,2,3,4,5,6,7,8,9,10,11,12].map(hour)と同じ */}
+                              {Array.from({ length: 12 }, (_, i) => i + 1).map(
+                                (hour) => (
+                                  <option key={hour} value={hour}>
+                                    {hour}
+                                  </option>
+                                ),
+                              )}
                             </select>
                             <select
                               className="border rounded p-1"
@@ -282,8 +303,11 @@ export default function HabitCreationUI() {
                             <select
                               className="border rounded p-1"
                               value={reminderPeriod}
-                              onChange={(e) =>
-                                setReminderPeriod(e.target.value as "AM" | "PM")
+                              onChange={
+                                (e) =>
+                                  setReminderPeriod(
+                                    e.target.value as "AM" | "PM",
+                                  ) //｜はorの意味
                               }
                             >
                               <option>AM</option>
@@ -292,6 +316,7 @@ export default function HabitCreationUI() {
                           </div>
                           <div className="flex justify-end gap-2">
                             <button
+                              type="button"
                               onClick={() => {
                                 setReminderHour(12);
                                 setReminderMinute(0);
@@ -302,6 +327,7 @@ export default function HabitCreationUI() {
                               クリア
                             </button>
                             <button
+                              type="button"
                               onClick={() => setOpenTimeDlg(false)}
                               className="px-4 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
                             >
@@ -328,6 +354,7 @@ export default function HabitCreationUI() {
               {/* キャンセル */}
               <div className="text-right">
                 <button
+                  type="button"
                   onClick={() => setOpenCreateDlg(false)}
                   className="text-gray-500 hover:text-gray-800"
                 >
