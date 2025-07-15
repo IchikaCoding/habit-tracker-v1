@@ -1,5 +1,4 @@
 // src/components/ui/Modal.tsx
-import React from "react";
 
 export type ModalProps = {
   children: React.ReactNode;
@@ -14,7 +13,17 @@ export default function Modal({ children, onClose, scroll }: ModalProps) {
         scroll ? "overflow-y-auto" : ""
       }`}
     >
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
+      <div
+        className="absolute inset-0 bg-black/50"
+        onClick={onClose}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            onClose();
+          }
+        }}
+        role="button"
+        tabIndex={0}
+      />
       <div className="relative">{children}</div>
     </div>
   );
