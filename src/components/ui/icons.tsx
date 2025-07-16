@@ -1,5 +1,4 @@
 // src/components/ui/icons.tsx
-import React from "react";
 
 export const PlusIcon = () => (
   <svg
@@ -7,7 +6,10 @@ export const PlusIcon = () => (
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
+    role="img"
+    aria-label="追加アイコン"
   >
+    <title>追加</title>
     <path
       strokeWidth="1.5"
       strokeLinecap="round"
@@ -23,7 +25,10 @@ export const SaveIcon = () => (
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
+    role="img"
+    aria-label="保存アイコン"
   >
+    <title>保存</title>
     <path
       strokeWidth="1.5"
       strokeLinecap="round"
@@ -34,7 +39,15 @@ export const SaveIcon = () => (
 );
 
 export const CheckIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="white" viewBox="0 0 24 24">
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="white"
+    viewBox="0 0 24 24"
+    role="img"
+    aria-label="チェックアイコン"
+  >
+    <title>色の選択</title>
     <path
       strokeWidth="3"
       strokeLinecap="round"
@@ -50,7 +63,10 @@ export const ClockIcon = () => (
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
+    role="img"
+    aria-label="時計アイコン"
   >
+    <title>リマインダーの設定</title>
     <path
       strokeWidth="1.5"
       strokeLinecap="round"
