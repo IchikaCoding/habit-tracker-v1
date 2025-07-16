@@ -2,6 +2,8 @@
 .env*
 .firebase/
 .vercel
+.ssh*
+src/firebaseConfig.ts
 
 # Next.js
 /.next/
