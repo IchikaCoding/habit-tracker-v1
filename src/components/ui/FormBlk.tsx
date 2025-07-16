@@ -1,5 +1,5 @@
 // src/components/ui/FormBlk.tsx
-import React from "react";
+import type React from "react"; //型情報だけをインポートする
 
 export type FormBlkProps = {
   label: string;
