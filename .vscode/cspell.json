@@ -7,5 +7,7 @@
         "**/.dockerignore",
         "**/.vscode/**"
     ],
-    "words": []
+    "words": [
+        "Firestore"
+    ]
 }
