@@ -1,6 +1,6 @@
 "use client";
-import { useState, useRef } from "react";
-import Modal from "@/components/ui/Modal";
+import Modal from "@components/ui/Modal";
+import { useRef, useState } from "react";
 
 /* ---------- 型 ---------- */
 export type FrequencyType =
@@ -180,7 +180,9 @@ function Option({
   onSelect: () => void;
   children: React.ReactNode;
 }) {
+  // ここにユニークIDをつけるべき？
   return (
+    // インプットはラベルで囲めば、テキストをクリックしても反応するようになる
     <label className="flex items-center gap-2 cursor-pointer w-full">
       <input
         type="radio"
@@ -188,13 +190,21 @@ function Option({
         onChange={onSelect}
         className="accent-blue-600 shrink-0"
       />
-      <div
-        className="flex flex-wrap items-center gap-2"
-        /* 入力をクリックした時に自動でそのオプションを選択 */
+      {/* 入力をクリックした時に自動でそのオプションを選択 */}
+      <button
+        type="button"
+        className="flex flex-wrap items-center gap-2 bg-transparent border-none p-0 m-0 cursor-pointer"
         onClick={onSelect}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            onSelect();
+          }
+        }}
+        tabIndex={-1} //これなんだ？
+        style={{ outline: "none" }} // 特別にボタンの外枠をなくすためのスタイル記述
       >
         {children}
-      </div>
+      </button>
     </label>
   );
 }
@@ -214,7 +224,7 @@ function InputNumber({
       type="number"
       min={1}
       value={value ?? ""}
-      onFocus={() => ref.current?.select()}
+      onFocus={() => ref.current?.select()} //これは何だ？
       onChange={(e) => onChange(+e.target.value || 1)}
       className="w-16 border rounded p-1 text-center"
     />
